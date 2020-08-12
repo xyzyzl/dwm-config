@@ -6,25 +6,26 @@ static const unsigned int gappx     = 15;        /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "scientifica:size=12" };
-static const char dmenufont[]       = "scientifica:size=12";
-static const char col_gray1[]       = "#282828";
-static const char col_gray2[]       = "#665c54";
-static const char col_gray3[]       = "#928374";
-static const char col_gray4[]       = "#ebdbb2";
-static const char col_yellow[]        = "#458588";
+static const char *fonts[]          = { "Source Code Pro:size=10" };
+static const char dmenufont[]       = "Source Code Pro:size=10";
+static const char col_gray1[]       = "#161821";
+static const char col_gray2[]       = "#6b7089";
+static const char col_gray3[]       = "#c6c8d1";
+static const char col_gray4[]       = "#d2d4de";
+static const char col_yellow[]        = "#84a0c6";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_yellow,  col_yellow  },
 };
 
-static const char *upvol[]   = { "amixer", "set", "Master", "5%+",     NULL };
-static const char *downvol[] = { "amixer", "set", "Master", "5%-",     NULL };
+static const char *power[]   = { "/home/xyzyzl/.dwm/power-script",    NULL };
+static const char *upvol[]   = { "amixer", "set", "Master", "5%+",    NULL };
+static const char *downvol[] = { "amixer", "set", "Master", "5%-",    NULL };
 static const char *mutevol[] = { "amixer", "set", "Master", "toggle", NULL };
 
 /* tagging */
-static const char *tags[] = { "gen1", "gen2", "video", "cfg", "games", "music", "code", "gfx", "web" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "爵" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -32,13 +33,11 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class          instance    title       tags mask     isfloating   monitor */
-	{ "stalonetray",  NULL,       NULL,       511,          1,           -1 },
-	{ "Gimp",         NULL,       NULL,       1 << 7,       1,           -1 },
+	{ "Gimp",         NULL,       NULL,       1 << 7,       0,           -1 },
 	{ "Firefox",      NULL,       NULL,       1 << 8,       0,           -1 },
 	{ "Atom",         NULL,       NULL,       1 << 6,       0,           -1 },
 	{ "zoom",         NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "spotify",      NULL,       NULL,       1 << 5,       0,           -1 },
-	{ "pavucontrol",  NULL,       NULL,       1 << 3,       0,           -1 },
 };
 
 /* layout(s) */
@@ -103,7 +102,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_q,      spawn,          {.v = power   } },
 	{ MODKEY,                       XK_F3,     spawn,          {.v = upvol   } },
 	{ MODKEY,                       XK_F2,     spawn,          {.v = downvol } },
 	{ MODKEY,                       XK_F1,     spawn,          {.v = mutevol } },
